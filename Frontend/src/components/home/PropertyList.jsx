@@ -37,7 +37,10 @@ const PropertyList = () => {
   const [currentPage, setCurrentPage] = useState({ page: 1 });
 
   const dispatch = useDispatch();
-  const { properties, totalProperties } = useSelector((state)=> state.properties)
+  // const { properties, totalProperties } = useSelector((state)=> state.properties)
+  const { properties, totalProperties, loading } = useSelector(
+    (state) => state.properties
+  );
 
   const lastPage = Math.ceil(totalProperties / 12);
 
@@ -69,8 +72,10 @@ const PropertyList = () => {
 
   return (
     <>
-      {properties.length === 0 ? (
-        <p className={"not_found"}>Property not found</p>
+      {loading ? (
+        <p className="not_found">Loading properties...</p>
+      ) : properties.length === 0 ? (
+        <p className="not_found">Property not found</p>
       ) : (
         <div className="propertylist" ref={propertyListRef}>
           {properties.map((property) => (

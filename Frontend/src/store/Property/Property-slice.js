@@ -32,8 +32,13 @@ const propertySlice = createSlice({
 
             }
         },
-        getErrors(state,action){
-            state.error = action.payload
+        // getErrors(state,action){
+        //     state.error = action.payload
+        // }
+
+        getErrors(state, action) {
+            state.error = action.payload;
+            state.loading = false;
         }
     }  
 })
